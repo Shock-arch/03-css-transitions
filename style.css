@@ -19,10 +19,6 @@ h1 {
   text-align: center;
 }
 
-h1:hover{
-  font-size: 60px;
-}
-
 .description {
   font-size: 18px;
   text-align: center;
@@ -51,6 +47,11 @@ h1:hover{
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   outline: 2px solid #775047;
+
+  /* smooth scale on hover/focus */
+  transition: transform 200ms cubic-bezier(.2,.8,.2,1), box-shadow 200ms;
+  transform-origin: center;
+  will-change: transform;
 }
 
 /* Card image style */
@@ -69,5 +70,25 @@ h1:hover{
   right: 0;
   background: rgba(62, 39, 35, 0.85);  /* Warm dark overlay */
   color: #FDF6E3;  /* Light text for contrast */
+  opacity: 0;
   padding: 0 12px;
+
+  /* hide interactions and animate opacity */
+  pointer-events: none;
+  transition: opacity 240ms ease;
+}
+
+/* Reveal on hover or keyboard focus */
+.card:hover .card-text,
+.card:focus .card-text {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Scale card on hover or keyboard focus */
+.card:hover,
+.card:focus {
+  transform: scale(1.04);
+  z-index: 2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
